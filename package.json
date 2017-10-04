@@ -1,0 +1,30 @@
+{
+    "name": "minecraft_ai",
+    "version": "0.0.1",
+    "description": "Experiments with Minecraft",
+    "license": "MIT",
+    "author": {
+        "name": "Arun Ramachandran",
+        "email": "arun.jhurricane@gmail.com"
+    },
+    "scripts": {
+        "clean": "rm -rf public/dist/",
+        "clear:all": "rm -rf node_modules/ && npm run clear",
+        "build": "webpack",
+        "watch": "webpack -w"
+    },
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "babel-preset-env": "^1.6.0",
+        "webpack": "^3.6.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jhurricane96/minecraft_ai"
+    },
+    "dependencies": {
+        "simplex-noise": "^2.3.0",
+        "three": "^0.87.1"
+    }
+}
