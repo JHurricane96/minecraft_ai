@@ -1,6 +1,5 @@
-'use strict';
-
-let path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     entry: {
@@ -9,7 +8,12 @@ module.exports = {
 
     output: {
         filename: 'bundle.js',
-        path: path.resolve('./public/dist')
+        path: path.resolve(__dirname, 'public/dist'),
+        publicPath: '/dist/'
+    },
+
+    devServer: {
+        contentBase: path.resolve(__dirname, 'public'),
     },
 
     // module: {
