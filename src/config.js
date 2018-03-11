@@ -1,8 +1,8 @@
 export const config = {
 	dim: {
-		x: 10,
-		y: 10,
-		z: 4
+		x: 15,
+		y: 15,
+		z: 8
 	},
-	blockSize: 10,
+	blockSize: 50,
 };
