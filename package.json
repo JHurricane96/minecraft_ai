@@ -15,16 +15,16 @@
     },
     "devDependencies": {
         "babel-core": "^6.26.0",
-        "babel-loader": "^7.1.2",
-        "babel-preset-env": "^1.6.0",
-        "webpack": "^3.6.0"
+        "babel-loader": "^7.1.4",
+        "babel-preset-env": "^1.6.1",
+        "webpack": "^4.1.1",
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/jhurricane96/minecraft_ai"
     },
     "dependencies": {
-        "simplex-noise": "^2.3.0",
-        "three": "^0.87.1"
+        "simplex-noise": "^2.4.0",
+        "three": "^0.90.0"
     }
 }
