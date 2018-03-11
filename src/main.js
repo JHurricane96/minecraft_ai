@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { config } from "./config";
 import FirstPersonControls from "./controls";
 import Block from "./block";
-import mapGenerator from "./generator";
+import { mapGenerator2D, mapGenerator3D } from "./generator";
 
 let scene, camera, renderer;
 const blocks = [];
@@ -17,8 +17,8 @@ const relativeMapEdges = {
 	top: config.dim.y * config.blockSize / 2
 };
 
-function createBlocks(centerPos) {
-	const heightMap = mapGenerator(centerPos, config.dim);
+function createBlocks2D(centerPos) {
+	const heightMap = mapGenerator2D(centerPos, config.dim);
 	const blocks = [];
 	const blockSize = config.blockSize;
 	for (let i = 0; i < heightMap.length; ++i) {
@@ -33,8 +33,31 @@ function createBlocks(centerPos) {
 	return blocks;
 }
 
+function createBlocks3D(centerPos) {
+	const blocks = [];
+	const blockMap = mapGenerator3D(centerPos, config.dim);
+	const blockSize = config.blockSize;
+
+	for (let i = 0; i < blockMap.length; ++i) {
+		for (let j = 0; j < blockMap[0].length; ++j) {
+			for (let k = 0; k < blockMap[0][0].length; ++k) {
+				if (blockMap[i][j][k] > 0.5) {
+					const x = (k * blockSize) + centerPos.x - (config.dim.x * blockSize / 2);
+					const y = (j * blockSize) + centerPos.y - (config.dim.y * blockSize / 2);
+					const z = (i * blockSize) - (config.dim.z * blockSize / 2);
+					blocks.push(new Block({ x: x, z: y, y: z}))
+				}
+			}
+		}
+	}
+
+	console.log(blocks);
+
+	return blocks;
+}
+
 function createBlocksAndAddToScene(centerPos) {
-	const blocks = createBlocks(centerPos);
+	const blocks = createBlocks2D(centerPos);
 	blocks.forEach(block => scene.add(block.mesh));
 	return blocks;
 }
@@ -164,7 +187,7 @@ function init() {
 	camera.position.z = curPos.z;
 	camera.lookAt(new THREE.Vector3(0, 10, 0));
 	
-	// blocks.push(...createBlocks(curPos));
+	// blocks.push(...createBlocks2D(curPos));
 	// blocks.forEach(function(block) {
 	// 	scene.add(block.mesh);
 	// }, this);
